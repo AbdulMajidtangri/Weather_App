@@ -1,0 +1,66 @@
+/* General Styles */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #87CEEB, #ffffff);
+    font-family: Arial, sans-serif;
+}
+
+/* Search Box */
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search input {
+    padding: 10px;
+    width: 250px;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search button:hover {
+    background-color: #0056b3;
+}
+
+/* Temperature Section */
+.temprature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.temprature img {
+    width: 80px;
+    height: 80px;
+}
+
+.temprature h1 {
+    font-size: 40px;
+    color: #333;
+}
+
+/* Humidity Section */
+.humidity {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
