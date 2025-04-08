@@ -1,45 +1,37 @@
 import React, { useEffect, useState } from "react";
 import CreateContextt from "./CreateContextt";
-
 const Create_api = ({ children }) => {
   const apikey = "d8b92a167d443f81006826fa5ab851f1";
-  const [city, setCity] = useState("London");
-  const [humidity, setHumidity] = useState(null);
-  const [windspeed, setwindspeed] = useState(null);
+  const [city, setCity] = useState("lahore");
   const [temp, setTemp] = useState(null);
-
-  const fetchingData = async () => {
+  const [humidity, setHumidity] = useState(null);
+  const [windspeed, setWindspeed] = useState(null);
+  const fetchdata = async () => {
     try {
-      const fetchdata = await fetch(
+      const raw = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
       );
-      const data = await fetchdata.json();
-
-      console.log(data);
-
+      const data = await raw.json();
+     
       if (data.main) {
+        setTemp((data.main.temp - 274.14).toFixed(2));
         setHumidity(data.main.humidity);
-        setTemp((data.main.temp - 273.15).toFixed(2)); 
-        setwindspeed((data.wind.speed));
+        setWindspeed(data.wind.speed);
       } else {
-        setHumidity(null);
         setTemp(null);
-        setwindspeed(null)
+        setHumidity(null);
+        setWindspeed(null);
+        console.log("the Wrong name is Added ");
       }
     } catch (error) {
-      console.error("Error fetching weather data:", error);
-      setHumidity(null);
-      setTemp(null);
-      setwindspeed(null);
+      console.log("there si the issue inn the data", error);
     }
   };
-
   useEffect(() => {
-    fetchingData();
+    fetchdata();
   }, [city]);
-
   return (
-    <CreateContextt.Provider value={{ city, setCity, temp, humidity,windspeed }}>
+    <CreateContextt.Provider value={{city, temp, humidity, windspeed, setCity}}>
       {children}
     </CreateContextt.Provider>
   );
